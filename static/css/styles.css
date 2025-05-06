@@ -1,0 +1,21 @@
+body {
+    font-family: "poppins"
+}
+
+
+,*
+*::after,
+*::before{
+box-sizing: border-box
+}
+
+.post-item {
+    display: flex;
+    flex-direction: colum;
+}
+
+.post-list {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}

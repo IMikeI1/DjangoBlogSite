@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>{{title}}</title>
+    
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-link active" aria-current="page" href="{% url 'blog:index' %}">Главная</a>
+    <a class="nav-link" href="#">Посты</a>
+    <a class="nav-link" href="{% url 'blog:about' %}">О сайте</a>
+  </nav>
+{% block content %}
+{% endblock content %}
+</body>
+</html>

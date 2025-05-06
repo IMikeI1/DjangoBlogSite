@@ -1,0 +1,35 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<h2>Последние посты</h2>
+<div class="post-list">
+    {% for post in page_obj %}
+        <h3><b>{{ post.author }}</b></h3>
+        {% if post.image %}
+            <img src="{{post.image.url}}" width="150px" height="auto">
+        {% else %}
+            <img src="{% static 'images/no_image.jpg' %}" width="150px" height="auto">
+        {% endif %}
+        <h4><a href="{{post.get_absolute_url}}">{{ post.title }}</a></h4>
+        <p>{{ post.text }}</p>
+        <p>{{ post.created_at }}</p>
+    {% endfor %}
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo;Первая</a>
+            <a href="?page={{ page_obj.previous_page_number}}">Предыдущая</a>
+        {% endif %}
+        <span class="current">
+            Страница {{page_obj.number}} из {{page_obj.paginator.num_pages}}
+        </span>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number}}">Следующая</a>
+            <a href="?page={{page_obj.paginator.num_pages}}">Последняя&raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock content %}

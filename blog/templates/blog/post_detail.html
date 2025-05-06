@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="post-list">
+    <h2>Информация о посте № {{post.pk}}</h2>
+    <b>{{ post.author }}</b>
+    <hr>
+    <h3>{{ post.title }}</h3>
+    {% if post.image %}
+        <img src="{{post.image.url}}" width="200px" height="auto">
+    {% else %}
+        <img src="{% static 'images/no_image.jpg' %}" width="200px" height="auto">
+    {% endif %}
+    <p>{{ post.text }}</p>
+    <p>{{ post.created_ad }}</p>
+    {% if user == post.author %}
+    <div class='btn-actions'>
+        <div class='btn-edit-post'>
+            <a href="{%url 'blog:update_post' slug=post.slug%}">
+                <button type="button">Редактировать</button>
+            </a>
+        </div>
+        <div class='btn-del-post'>
+            <a href="{%url 'blog:delete_post' pk=post.id%}">
+                <button type="button">Удалить</button>
+            </a>
+        </div>
+    </div>
+    {%endif%}
+    {% if user.is_superuser %}
+    <div class='btn-actions'>
+        <div class='btn-del-post'>
+            <a href="{%url 'blog:delete_post' pk=post.id%}">
+                <button type="button">Удалить</button>
+            </a>
+        </div>
+    </div>
+    {%endif%}
+</div>
+{% endblock content %}
