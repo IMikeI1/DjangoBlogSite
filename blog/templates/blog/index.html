@@ -1,0 +1,54 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load custom_tags %}
+{% block content %}
+    <form action="{% url 'blog:search_post' %}" method="get">
+        <input type="search" name="query">
+        <button type="submit" class="search-button">Поиск</button>
+    </form>
+    <form action="{% url 'blog:filter_post' %}" method="get">
+        {{filter_form.as_p}}
+        <button type="submit" class="filter-button">Фильтровать</button>
+    </form>
+    <h2>{{post_text}}</h2>
+    {% if page_obj|length == 0 %}
+        <h3>По вашему запросу ничего не найдено!</h3>
+    {% else %}
+        <div class="post-list">
+            {% for post in page_obj %}
+                <div class="post-item">
+                    <div>
+                        <a href="{% url 'blog:user_posts' user_id=post.author.pk %}">
+                            <h3><b>{{ post.author }}</b></h3>
+                        </a>
+                    </div>
+                    {% if post.image %}
+                        <img src="{{post.image.url}}" width="150px" height="auto">
+                    {% else %}
+                        <img src="{% static 'img/no_image.jpg' %}" width="150px" height="auto">
+                    {% endif %}
+                    <h4><a href="{{post.get_absolute_url}}">{{ post.title }}</a></h4>
+                    <p>{{ post.text }}</p>
+                    <p>{{ post.created_at }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="pagination">
+            <div class="step-links">
+                <form method="get" style="display: inline;">
+                    {% if page_obj.has_previous %}
+                        <button type="submit" name="page" value="1">&laquo; Первая</button>
+                        <button type="submit" name="page" value="{{ page_obj.previous_page_number }}">Предыдущая</button>
+                    {% endif %}
+                    <span class="current">
+                        Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+                    </span>
+                    {% if page_obj.has_next %}
+                        <button type="submit" name="page" value="{{ page_obj.next_page_number }}">Следующая</button>
+                        <button type="submit" name="page" value="{{ page_obj.paginator.num_pages }}">Последняя &raquo;</button>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}

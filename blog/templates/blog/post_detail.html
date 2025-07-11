@@ -1,0 +1,61 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="post-list">
+    <h2>Информация о объявление № {{post.pk}}</h2>
+    {% if user.is_authenticated %}
+    <a href="{%url 'blog:user_info' user_id=post.author.pk%}">
+        <b>{{ post.author }}</b>
+    </a>
+    {% else %}
+        <b>{{ post.author }}</b>
+    {% endif %}
+    <hr>
+    <h3>{{ post.title }}</h3>
+    {% if post.image %}
+        <img src="{{post.image.url}}" width="200px" height="auto">
+    {% else %}
+        <img src="{% static 'images/no_image.jpg' %}" width="200px" height="auto">
+    {% endif %}
+    <p>{{ post.text }}</p>
+    <p>{{ post.created_ad }}</p>
+    {% if user.is_authenticated and user != post.author %}
+    {% if is_favorite %}
+        <a href="{% url 'blog:remove_from_favorites' slug=post.slug %}">
+            <button type="button" class="custom-button">Удалить из избранного</button>
+        </a>
+    {% else %}
+        <a href="{% url 'blog:add_to_favorites' slug=post.slug %}">
+            <button type="button" class="custom-button">Добавить в избранное</button>
+        </a>
+    {% endif %}
+{% endif %}
+
+    {% if user == post.author %}
+    <div class='btn-actions'>
+        <div class='btn-edit-post'>
+            <a href="{%url 'blog:update_post' slug=post.slug%}">
+                <button type="button" class="custom-button">Редактировать</button>
+            </a>
+        </div>
+        <div class='btn-del-post'>
+            <a href="{%url 'blog:delete_post' pk=post.id%}">
+                <button type="button" class="custom-button">Удалить</button>
+            </a>
+        </div>
+    </div>
+    {% else %}
+    
+    {% if user.is_superuser %}
+    <div class='btn-actions'>
+        <div class='btn-del-post'>
+            <a href="{%url 'blog:delete_post' pk=post.id%}">
+                <button type="button" class="custom-button">Удалить</button>
+            </a>
+        </div>
+    </div>
+    {%endif%}
+{%endif%}
+</div>
+{% endblock content %}

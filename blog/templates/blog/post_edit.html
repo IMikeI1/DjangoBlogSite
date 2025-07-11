@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="post-list">
+<h2>Редактировать пост</h2>
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="custom-button">Изменить пост</button>
+</form>
+</div>
+
+{% endblock content %}

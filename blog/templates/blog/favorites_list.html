@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="favorite">
+    <h3>мои избранные посты</h3>
+    <ul class="favorite-list">
+    
+        {% for favorite in favorites %}
+        <li>
+            <div class="favorite-text">
+                    
+                <a href="{% url 'blog:read_post' slug=favorite.post.slug %}">
+                    {{ favorite.post.title }}
+                </a>
+            </div>
+            {% if favorite.post.image %}
+                <img src="{{ favorite.post.image.url }}" width="150px" height="auto">
+            {% else %}
+                <img src="{% static 'img/no_image.jpg' %}" width="150px" height="auto">
+            {% endif %}
+        </li>
+        {% empty %}
+            <p>У вас пока нету постов в избранном!!!</p>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

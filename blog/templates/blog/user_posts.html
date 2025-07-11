@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+
+{% block content %}
+{% if user == request.user%}
+    <h2>Мои посты</h2>
+{% else %}
+    <h2>Посты пользователя {{user.username}}</h2>
+{% endif%}
+<div class="post-list">
+    {% for post in posts %}
+        <div class="post-item">
+            <div>
+                <h3><b>{{ post.author }}</b></h3>
+            </div>
+            {% if post.image %}
+                <img src="{{post.image.url}}" width="150px" height="auto">
+            {% else %}
+                <img src="{% static 'img/no_image.jpg' %}" width="150px" height="auto">
+            {% endif %}
+            <h4><a href="{{post.get_absolute_url}}">{{ post.title }}</a></h4>
+            <p>{{ post.text }}</p>
+            <p>{{ post.created_at }}</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}

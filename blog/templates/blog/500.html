@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="error-container">
+    <img src="{% static 'img/500.png' %}" alt="500 Ошибка">
+    <a href="{% url 'blog:index' %}" class="custom-button">Вернуться на главную</a>
+</div>
+
+{% endblock content %}
