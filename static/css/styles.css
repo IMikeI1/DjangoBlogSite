@@ -1,9 +1,10 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Helvetica, sans-serif;
-    background-color: #ffffff;
-    color: #03464b;
+    background: linear-gradient(120deg, #232526 0%, #314755 100%);
+    color: #f5f5f5;
     font-size: 16px;
     line-height: 1.5;
+    min-height: 100vh;
 }
 /*
 *,
@@ -13,25 +14,30 @@ body {
 }
 */
 .post-item {
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    background: linear-gradient(120deg, #263238 60%, #314755 100%);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(38,166,154,0.10);
+    transition: transform 0.2s, box-shadow 0.2s;
     overflow: hidden;
-    padding: 15px;
+    padding: 22px 18px 18px 18px;
     margin-bottom: 20px;
+    min-width: 320px;
+    max-width: 370px;
+    border: 1.5px solid #26a69a33;
 }
 
 .post-list {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 50px;
+    gap: 36px;
 }
 
 header {
-    background-color: #03464b;
-    padding: 20px 0;
+    background: linear-gradient(90deg, #314755 0%, #26a69a 100%);
+    padding: 24px 0 18px 0;
     margin-bottom: 30px;
+    box-shadow: 0 4px 24px rgba(38,166,154,0.08);
 }
 
 .header-content {
@@ -46,15 +52,15 @@ header {
 }
 
 .site-title a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 28px;
+    color: #fffbe7;
+    text-shadow: 0 2px 8px #26a69a44;
+    font-size: 32px;
     font-weight: bold;
-    transition: color 0.3s ease;
+    letter-spacing: 1px;
 }
 
 .site-title a:hover {
-    color: #e0e0e0;
+    color: #ffe082;
 }
 
 .menu {
@@ -68,36 +74,43 @@ header {
 }
 
 .menu a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-    transition: color 0.3s ease;
+    color: #ffe082;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
 }
 
 .menu a:hover {
-    color: #e0e0e0;
+    background: #26a69a;
+    color: #232526;
 }
 
 .menu-divider {
-    color: #ffffff;
+    color: #ffe082;
     font-weight: 300;
 }
 
 .search-button {
     margin-top: 10px;
-    background-color: #03464b;
-    color: #ffffff;
+    background: linear-gradient(90deg, #26a69a 0%, #314755 100%);
+    color: #fffbe7;
     border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
+    padding: 10px 22px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 8px 4px 0 0;
+    box-shadow: 0 2px 8px #26a69a33;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
 }
 
 .search-button:hover {
-    background-color: #023336;
+    background: #ffe082;
+    color: #232526;
+    transform: translateY(-2px) scale(1.04);
 }
 
 .search-button:active {
@@ -105,30 +118,30 @@ header {
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    min-height: calc(100vh - 100px);
+    box-shadow: 0 4px 32px rgba(38,166,154,0.10);
+    border-radius: 14px;
+    padding: 32px 28px;
+    margin: 32px auto;
 }
 
 .filter-button {
-    background-color: #03464b;
-    color: #ffffff;
+    background: linear-gradient(90deg, #26a69a 0%, #314755 100%);
+    color: #fffbe7;
     border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
+    padding: 10px 22px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    margin: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 8px 4px 0 0;
+    box-shadow: 0 2px 8px #26a69a33;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
 }
 
 .filter-button:hover {
-    background-color: #023336;
-    transform: translateY(-2px);
+    background: #ffe082;
+    color: #232526;
+    transform: translateY(-2px) scale(1.04);
 }
 
 .filter-button:active {
@@ -146,28 +159,24 @@ header {
 
 
 .custom-button {
-    background-color: #03464b;
-    color: #ffffff;
+    background: linear-gradient(90deg, #26a69a 0%, #314755 100%);
+    color: #fffbe7;
     border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
+    padding: 10px 22px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    margin: 5px;
-}
-
-.custom-button:hover {
-    background-color: #023336;
-    transform: translateY(-2px);
+    font-size: 15px;
+    font-weight: 600;
+    margin: 8px 4px 0 0;
+    box-shadow: 0 2px 8px #26a69a33;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
 }
 
 
 
-.custom-button:active {
-    background-color: #012224;
-    transform: translateY(0);
-}
+
+
+
 
 
 .custom-button-container {
@@ -181,22 +190,25 @@ header {
 
 .footer-bottom {
     text-align: center;
-    margin-top: 500px;
+    margin-top: 80px;
     padding-top: 20px;
-    border-top: 1px solid rgba(3, 70, 75, 0.1);
+    border-top: 1px solid #26a69a33;
+    color: #ffe082;
+    background: transparent;
 }
 
 .footer-bottom p {
     font-size: 14px;
-    color: #03464b;
+    color: #f3c706;
 }
 .post-item img {
-    width: 150px; /* фиксированная ширина */
-    height: 150px; /* фиксированная высота */
-
+    width: 100%;
+    max-width: 260px;
+    height: 180px;
     object-fit: cover;
-    border-radius: 5px;
-    margin: 10px 0;
+    border-radius: 10px;
+    margin: 12px 0 8px 0;
+    box-shadow: 0 2px 12px #23252655;
 }
 
 
@@ -368,10 +380,210 @@ header {
     justify-content: center; /* можно изменить на start/left по желанию */
 }
 
+.post-item h4 a, .post-item h3, .post-item h4, .post-item b, .post-item .post-title, .post-item .post-author, .post-item .author-link, .post-item .author {
+    color: #fff !important;
+    text-shadow: 0 1px 6px #23252655;
+}
+
+/* Для детальной страницы */
+.post-list h2, .post-list h3, .post-list b, .post-list .author-link, .post-list .author {
+    color: #fff !important;
+    text-shadow: 0 1px 6px #23252655;
+}
+
+/* Для ссылок на автора */
+.post-item a, .post-list a {
+    color: #ffe082;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.post-item a:hover, .post-list a:hover {
+    color: #fffbe7;
+}
+
+.registration-container {
+    max-width: 420px;
+    margin: 40px auto 0 auto;
+   
+    border-radius: 18px;
+   
+    padding: 36px 32px 28px 32px;
+    color: #fffbe7;
+    position: relative;
+    
+}
+.registration-container h3{
+    text-align: center;
+    margin-bottom: 28px;
+    font-size: 2rem;
+    color: #ffe082;
+    
+}
 
 
+.login {
+    max-width: 420px;
+    margin: 40px auto 0 auto;
+   
+    border-radius: 18px;
+   
+    padding: 36px 32px 28px 32px;
+    color: #fffbe7;
+    position: relative;
+    
+}
+.login h4{
+    text-align: center;
+    margin-bottom: 28px;
+    font-size: 2rem;
+    color: #ffe082;
+    
+}
 
+/* --- Dog Info Pages --- */
+.dog-info-container {
+    background: #232526;
+    color: #fff;
+    border-radius: 16px;
+    padding: 32px 24px;
+    box-shadow: 0 2px 8px #23252655;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.dog-info-title {
+    color: #ffe082;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 2.2rem;
+    margin-bottom: 18px;
+}
+.dog-info-title span {
+    font-size: 2.5rem;
+}
+.dog-info-desc {
+    font-size: 1.15rem;
+    margin-bottom: 24px;
+}
+.dog-info-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.dog-info-block {
+    background: #2d2f31;
+    border-radius: 10px;
+    padding: 18px;
+}
+.dog-info-block b {
+    color: #ffe082;
+}
+.dog-info-img {
+    margin-top: 32px;
+    text-align: right;
+}
+.dog-info-img img {
+    max-width: 180px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #23252655;
+}
 
+/* --- Leash Info Box --- */
+.leash-box {
+    background: #232526;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px #23252655;
+    max-width: 500px;
+    margin: 36px auto 0 auto;
+    padding: 0 0 24px 0;
+    overflow: hidden;
+    border: 1.5px solid #ffe08255;
+}
+.leash-img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: #2d2f31;
+    border-radius: 16px 16px 0 0;
+    padding: 18px 0 0 0;
+}
+.leash-img img {
+    max-width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #23252655;
+}
+.leash-text {
+    color: #fff;
+    padding: 22px 28px 0 28px;
+    font-size: 1.08rem;
+    line-height: 1.6;
+}
 
+.search-filter-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
 
+/* Стили для блока "О САМОМ ГЛАВНОМ!" */
+.important-block {
+    background: linear-gradient(120deg, #263238 60%, #314755 100%);
+    border-radius: 16px;
+    padding: 22px 18px;
+    margin: 20px 0;
+    border: 1.5px solid #26a69a33;
+    box-shadow: 0 4px 24px rgba(38, 166, 154, 0.10);
+    text-align: center; /* Центрирование содержимого */
+    max-width: 100px; /* Опционально: ограничение ширины */
+    margin-left: auto; /* Выравнивание справа */
+    margin-right: auto; /* Центрирование блока */
+}
 
+.important-title {
+    color: #ffe082;
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    text-shadow: 0 1px 6px #23252655;
+}
+
+.important-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.important-list li {
+    margin-bottom: 12px;
+}
+
+.important-list a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.important-list a:hover {
+    color: #ffe082;
+    background: rgba(38, 166, 154, 0.2);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ffe082;
+    text-shadow: 0 2px 8px #23252688;
+}
+
+a, .post-item a, .container a, .menu a, .favorite-text a {
+    color: #ffe082;
+    text-shadow: 0 1px 4px #23252688;
+}
+a:hover, .post-item a:hover, .container a:hover, .menu a:hover, .favorite-text a:hover {
+    color: #fffbe7;
+}

@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+<div class="dog-info-container">
+    <h2 class="dog-info-title">
+        <span></span> Питание вашей собаки
+    </h2>
+    <p class="dog-info-desc">Правильное питание — основа здоровья и долголетия собаки. Вот несколько рекомендаций по кормлению:</p>
+    <div class="dog-info-blocks">
+        <div class="dog-info-block">
+            <b>1. Сбалансированный рацион</b>
+            <p>Включайте в рацион белки, жиры, углеводы, витамины и минералы. Используйте качественные корма или натуральные продукты.</p>
+        </div>
+        <div class="dog-info-block">
+            <b>2. Режим кормления</b>
+            <p>Кормите собаку в одно и то же время, избегайте перекармливания и не давайте вредные продукты со стола.</p>
+        </div>
+        <div class="dog-info-block">
+            <b>3. Свежая вода</b>
+            <p>У собаки всегда должен быть доступ к чистой и свежей воде.</p>
+        </div>
+        <div class="dog-info-block">
+            <b>4. Особенности возраста и породы</b>
+            <p>Учитывайте возраст, размер и активность собаки при выборе корма и порций.</p>
+        </div>
+    </div>
+    <div class="dog-info-img">
+        <img src="{% static 'img/Dogs.jpeg' %}" alt="dog food">
+    </div>
+</div>
+{% endblock %}

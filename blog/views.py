@@ -7,6 +7,8 @@ from .forms import PostForm, FilterForm
 from .models import Post, Favorite
 from django.http import HttpResponseNotFound
 from django.contrib import messages
+from django.views.decorators.http import require_POST
+from django.http import JsonResponse
 
 def trigger_404(request):
     return HttpResponseNotFound(render(request, 'blog/404.html'))
@@ -19,20 +21,29 @@ def trigger_500(request):
 
 
 def index(request):
-    # Получение всех постов, отсортированных по дате публикации (select * from blog_post order by created_at DESC)
     posts = Post.objects.all().order_by('-created_at')
     count_posts = Post.objects.count()
-    # Показываем по 3 поста на странице
     per_page = 2
     paginator = Paginator(posts, per_page)
-    #Получаем номер страницы из url
     page_number = request.GET.get('page')
-    # Получаем объекты для текущей страницы
     page_obj = paginator.get_page(page_number)
     filter_form = FilterForm()
+
+    # Добавляем информацию о том, находится ли пост в избранном
+    favorites = set()
+    if request.user.is_authenticated:
+        favorites = set(Favorite.objects.filter(user=request.user).values_list('post_id', flat=True))
+    posts_with_fav = []
+    for post in page_obj:
+        posts_with_fav.append({
+            'post': post,
+            'is_favorite': post.id in favorites
+        })
+
     context = {
         'title': 'Главная страница',
         'page_obj': page_obj,
+        'posts_with_fav': posts_with_fav,
         'count_posts': count_posts,
         'post_text': 'Последние посты',
         'filter_form': filter_form
@@ -143,17 +154,26 @@ def filter_post(request):
 
     per_page = 3
     paginator = Paginator(results, per_page)
-    # Получаем номер страницы из url
     page_number = request.GET.get('page')
-    # Получаем объекты для текущей страницы
     page_obj = paginator.get_page(page_number)
     count_posts = results.count()
+    # Формируем posts_with_fav как в index
+    favorites = set()
+    if request.user.is_authenticated:
+        favorites = set(Favorite.objects.filter(user=request.user).values_list('post_id', flat=True))
+    posts_with_fav = []
+    for post in page_obj:
+        posts_with_fav.append({
+            'post': post,
+            'is_favorite': post.id in favorites
+        })
     filter_form = FilterForm()
     context = {
         'title': 'Главная страница',
         'page_obj': page_obj,
         'count_posts': count_posts,
-        'post_text': 'Результаты поиска',
+        'posts_with_fav': posts_with_fav,
+        'post_text': 'Результаты фильтрации',
         'filter_form': filter_form
     }
     return render(request, template_name='blog/index.html', context=context)
@@ -181,5 +201,39 @@ def remove_from_favorites(request, slug):
 def favorites_list(request):
     favorites = Favorite.objects.filter(user=request.user).select_related('post')
     context = {'favorites': favorites, 'title': 'Мои избранные посты'}
-    return render(request, 'blog/favorites_list.html', context) 
+    return render(request, 'blog/favorites_list.html', context)
+
+@require_POST
+@login_required
+def add_to_favorites_ajax(request):
+    slug = request.POST.get('slug')
+    if not slug:
+        return JsonResponse({'success': False, 'error': 'No slug provided.'}, status=400)
+    post = get_object_or_404(Post, slug=slug)
+    if post.author == request.user:
+        return JsonResponse({'success': False, 'error': 'Нельзя добавить свой пост.'}, status=403)
+    fav, created = Favorite.objects.get_or_create(user=request.user, post=post)
+    return JsonResponse({'success': True, 'added': created})
+
+@require_POST
+@login_required
+def remove_from_favorites_ajax(request):
+    slug = request.POST.get('slug')
+    if not slug:
+        return JsonResponse({'success': False, 'error': 'No slug provided.'}, status=400)
+    post = get_object_or_404(Post, slug=slug)
+    deleted, _ = Favorite.objects.filter(user=request.user, post=post).delete()
+    return JsonResponse({'success': True, 'removed': deleted > 0})
+
+def health_dog(request):
+    """Страница о здоровье собак."""
+    return render(request, template_name='blog/Health_dog.html', context={'title': 'Здоровье собак'})
+
+def eat_dog(request):
+    """Страница о еде для собак."""
+    return render(request, template_name='blog/eat_dog.html', context={'title': 'Питание собак'})
+
+def leash(request):
+    """Страница о выборе поводка для собаки."""
+    return render(request, template_name='blog/leash.html', context={'title': 'Поводок для собаки'}) 
 

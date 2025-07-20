@@ -9,7 +9,10 @@
 <body>
     <header>
         <div class="header-content">
-            <h3 class="site-title"><a href="/">Блог хвостатые истории</a></h3>
+            <h3 class="site-title">
+                <span style="font-size: 32px; vertical-align: middle;">🐾</span>
+                <a href="/">Блог хвостатые истории</a>
+            </h3>
             <nav>
                 <div class="menu">
                     <div><a href="{% url 'blog:index' %}">Главная</a></div>
@@ -33,9 +36,19 @@
             <div class="message">{{ message }}</div>
         {% endfor %}
     {% endif %}
-    {% block content %}
-    {% endblock content %}
-
+    <div class="container" style="display: flex; flex-direction: row;">
+        <div style="flex: 1;">
+            {% block content %}
+            {% endblock content %}
+        </div>
+        <div class="important-block">
+            <h4 class="important-title">О САМОМ ГЛАВНОМ!</h4>
+            <ul class="important-list">
+                <li><a href="{% url 'blog:health_dog' %}">Здоровье собак</a></li>
+                <li><a href="{% url 'blog:eat_dog' %}">Питание собак</a></li>
+            </ul>
+        </div>
+    </div>
     <div class="footer-bottom">
         <p>&copy; 2024 Блог про хозяев и домашних собак. Все права защищены.</p>
     </div>

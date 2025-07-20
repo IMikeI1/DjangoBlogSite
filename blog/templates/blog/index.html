@@ -2,6 +2,7 @@
 {% load static %}
 {% load custom_tags %}
 {% block content %}
+<div class="search-filter-wrapper">
     <form action="{% url 'blog:search_post' %}" method="get">
         <input type="search" name="query">
         <button type="submit" class="search-button">Поиск</button>
@@ -10,27 +11,28 @@
         {{filter_form.as_p}}
         <button type="submit" class="filter-button">Фильтровать</button>
     </form>
+</div>
     <h2>{{post_text}}</h2>
     {% if page_obj|length == 0 %}
         <h3>По вашему запросу ничего не найдено!</h3>
     {% else %}
         <div class="post-list">
             {% for post in page_obj %}
-                <div class="post-item">
-                    <div>
-                        <a href="{% url 'blog:user_posts' user_id=post.author.pk %}">
-                            <h3><b>{{ post.author }}</b></h3>
-                        </a>
-                    </div>
-                    {% if post.image %}
-                        <img src="{{post.image.url}}" width="150px" height="auto">
-                    {% else %}
-                        <img src="{% static 'img/no_image.jpg' %}" width="150px" height="auto">
-                    {% endif %}
-                    <h4><a href="{{post.get_absolute_url}}">{{ post.title }}</a></h4>
-                    <p>{{ post.text }}</p>
-                    <p>{{ post.created_at }}</p>
+            <div class="post-item">
+                <div>
+                    <a href="{% url 'blog:user_posts' user_id=post.author.pk %}">
+                        <h3><b>{{ post.author }}</b></h3>
+                    </a>
                 </div>
+                {% if post.image %}
+                    <img src="{{post.image.url}}" width="150" height="auto">
+                {% else %}
+                    <img src="{% static 'img/no_image.jpg' %}" width="150" height="auto">
+                {% endif %}
+                <h4><a href="{{post.get_absolute_url}}">{{ post.title }}</a></h4>
+                <p>{{ post.text }}</p>
+                <p>{{ post.created_at }}</p>
+            </div>
             {% endfor %}
         </div>
         <div class="pagination">
@@ -52,3 +54,41 @@
         </div>
     {% endif %}
 {% endblock content %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.favorite-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var slug = this.getAttribute('data-slug');
+            var isFavorite = this.getAttribute('data-favorite') === 'true';
+            var button = this;
+            var url = isFavorite ? '{% url "blog:remove_from_favorites_ajax" %}' : '{% url "blog:add_to_favorites_ajax" %}';
+            var newText = isFavorite ? 'Добавить в избранное' : 'Удалить из избранного';
+            var newBg = isFavorite ? '' : '#ffe082';
+            var newColor = isFavorite ? '' : '#232526';
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: 'slug=' + encodeURIComponent(slug)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    button.setAttribute('data-favorite', isFavorite ? 'false' : 'true');
+                    button.textContent = newText;
+                    button.style.background = newBg;
+                    button.style.color = newColor;
+                } else {
+                    alert(data.error || 'Ошибка!');
+                }
+            })
+            .catch(() => alert('Ошибка сети!'));
+        });
+    });
+});
+</script>
+{% endblock %}
