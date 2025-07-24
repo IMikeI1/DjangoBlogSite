@@ -642,3 +642,8 @@ a:hover, .post-item a:hover, .container a:hover, .menu a:hover, .favorite-text a
     font-size: 1.08rem;
     line-height: 1.6;
 }
+
+.registration-container button[type="submit"],
+.registration-container input[type="submit"] {
+    margin-top: 28px;
+}
