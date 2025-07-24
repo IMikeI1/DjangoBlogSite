@@ -3,6 +3,9 @@
 {% block content %}
 <div class="dog-info-container">
     <h2 class="dog-info-title">
+        <div class="dog-info-img">
+            <img src="{% static 'img/med.jpg' %}" alt="dog health">
+        </div>
         <span></span> Здоровье вашей собаки
     </h2>
     <p class="dog-info-desc">Здоровье собаки — залог долгой и счастливой жизни вашего питомца. Вот несколько советов по уходу за здоровьем:</p>
@@ -24,11 +27,7 @@
             <p>Регулярно расчёсывайте шерсть и чистите зубы, чтобы избежать проблем с кожей и полостью рта.</p>
         </div>
     </div>
-    <div class="dog-info-img">
-        <img src="{% static 'img/Dogs.jpeg' %}" alt="dog health">
-    </div>
-    <div style="margin-top: 32px; text-align: center;">
-        <a href="{% url 'blog:leash' %}" class="custom-button" style="background: #ffe082; color: #232526; font-weight: 600; border-radius: 8px; padding: 12px 28px; text-decoration: none; box-shadow: 0 2px 8px #23252633; transition: background 0.2s, color 0.2s;">Подробнее о выборе поводка</a>
-    </div>
+   
+   
 </div>
 {% endblock %}

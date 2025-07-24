@@ -1,14 +1,16 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+<div class="info_user">
 <h3>Информация о пользователе</h3>
 <div>Логин - {{user.username}}</div>
 <div>Имя - {{user.first_name}}</div>
 <div>Фамилия - {{user.last_name}}</div>
-<div>Элю Почта - {{user.email}}</div>
+<div>Электронная Почта - {{user.email}}</div>
 <div>Дата регистрации: {{user.date_joined}}</div>
 <a href="{%url 'users:change-password'%}">
     <button type="button" class="custom-button">Сменить пароль</button>
 </a>
+</div>
 
 {% endblock content %}

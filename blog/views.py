@@ -237,3 +237,12 @@ def leash(request):
     """Страница о выборе поводка для собаки."""
     return render(request, template_name='blog/leash.html', context={'title': 'Поводок для собаки'}) 
 
+
+
+def cant_shout(request):
+    """Страница о том как нельзя кричать на собаку!"""
+    return render(request, template_name='blog/cant_shout.html', context={'title': 'Нельзя кричать на собаку!'})
+
+def feedback(request):
+    """Страница часто задаваемые вопросы!"""
+    return render(request, template_name='blog/feedback.html', context={'title': 'Часто задаваемые вопросы'})
