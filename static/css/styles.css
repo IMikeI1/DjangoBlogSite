@@ -647,3 +647,10 @@ a:hover, .post-item a:hover, .container a:hover, .menu a:hover, .favorite-text a
 .registration-container input[type="submit"] {
     margin-top: 28px;
 }
+
+.registration-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
+}
