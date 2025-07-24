@@ -291,7 +291,7 @@ header {
 .pagination .current {
     margin: 0 15px;
     font-weight: bold;
-    color: #03464b;
+    color: #RGB: 255,165,0;
     display: inline-flex;
     align-items: center;
 }
