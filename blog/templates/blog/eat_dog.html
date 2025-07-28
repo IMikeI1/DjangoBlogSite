@@ -3,6 +3,9 @@
 {% block content %}
 <div class="dog-info-container">
     <h2 class="dog-info-title">
+         <div class="dog-info-img">
+        <img src="{% static 'img/eat .jpg' %}" alt="dog eat">
+    </div>
         <span></span> Питание вашей собаки
     </h2>
     <p class="dog-info-desc">Правильное питание — основа здоровья и долголетия собаки. Вот несколько рекомендаций по кормлению:</p>
@@ -24,8 +27,6 @@
             <p>Учитывайте возраст, размер и активность собаки при выборе корма и порций.</p>
         </div>
     </div>
-    <div class="dog-info-img">
-        <img src="{% static 'img/Dogs.jpeg' %}" alt="dog food">
-    </div>
+
 </div>
 {% endblock %}

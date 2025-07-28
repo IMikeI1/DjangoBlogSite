@@ -219,37 +219,69 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 80vh;
+    min-height: 60vh;
     text-align: center;
-    padding: 20px;
-    background-color: #ffffff;
+    padding: 40px 20px;
+    background: linear-gradient(120deg, #263238 60%, #314755 100%);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(38,166,154,0.10);
+    border: 1.5px solid #26a69a33;
+    margin: 20px 0;
+}
+
+.error-code {
+    font-size: 6rem;
+    font-weight: bold;
+    color: #ffe082;
+    text-shadow: 0 2px 8px #23252688;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.error-title {
+    font-size: 2rem;
+    color: #fffbe7;
+    margin-bottom: 15px;
+    text-shadow: 0 1px 6px #23252655;
+}
+
+.error-message {
+    font-size: 1.1rem;
+    color: #f5f5f5;
+    margin-bottom: 30px;
+    max-width: 500px;
+    line-height: 1.6;
 }
 
 .error-container img {
-    max-width: 400px;
+    max-width: 300px;
     height: auto;
     margin-bottom: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(38,166,154,0.2);
+    border: 2px solid #26a69a33;
 }
 
 .error-container .custom-button {
     margin-top: 20px;
-    padding: 12px 24px;
+    padding: 14px 28px;
     font-size: 16px;
-    background-color: #03464b;
-    color: #ffffff;
+    background: linear-gradient(90deg, #26a69a 0%, #314755 100%);
+    color: #fffbe7;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 2px 8px #26a69a33;
     transition: all 0.3s ease;
 }
 
 .error-container .custom-button:hover {
-    background-color: #023336;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #ffe082;
+    color: #232526;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 12px #26a69a44;
 }
 
 .error-container .custom-button:active {
@@ -300,25 +332,62 @@ header {
 .success-container {
     max-width: 600px;
     margin: 50px auto;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 40px 30px;
+    background: linear-gradient(120deg, #263238 60%, #314755 100%);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(38,166,154,0.10);
+    border: 1.5px solid #26a69a33;
     text-align: center;
+    color: #fffbe7;
 }
 
+.success-container h2 {
+    color: #ffe082;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 8px #23252688;
+}
+
+.success-message {
+    font-size: 1.1rem;
+    color: #f5f5f5;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
 
 .success-buttons {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     justify-content: center;
     margin-top: 30px;
+    flex-wrap: wrap;
 }
 
 .success-buttons .custom-button {
-    padding: 12px 24px;
+    padding: 14px 28px;
     font-size: 16px;
-    min-width: 150px;
+    min-width: 160px;
+    background: linear-gradient(90deg, #26a69a 0%, #314755 100%);
+    color: #fffbe7;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 2px 8px #26a69a33;
+    transition: all 0.3s ease;
+}
+
+.success-buttons .custom-button:hover {
+    background: #ffe082;
+    color: #232526;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 12px #26a69a44;
+}
+
+.success-buttons .custom-button:active {
+    background-color: #012224;
+    transform: translateY(0);
 }
 
 @keyframes scale-in {
@@ -359,13 +428,13 @@ header {
 }
 
 .favorite-text a:hover {
-    color: #006400; /* тёмно-зелёный при наведении */
+    color: #006400; 
 }
 
 .favorite img {
-    width: 150px; /* фиксированная ширина */
-    height: 150px; /* фиксированная высота */
-    object-fit: cover; /* чтобы изображение сохраняло пропорции */
+    width: 150px; 
+    height: 150px; 
+    object-fit: cover; 
     border-radius: 5px;
     display: block;
     margin: 0 auto;
@@ -373,11 +442,11 @@ header {
 
 .favorite-list {
     display: flex;
-    flex-wrap: wrap; /* перенос на новую строку, если не помещается */
+    flex-wrap: wrap; 
     gap: 20px;
     padding: 0;
     list-style: none;
-    justify-content: center; /* можно изменить на start/left по желанию */
+    justify-content: center; 
 }
 
 .post-item h4 a, .post-item h3, .post-item h4, .post-item b, .post-item .post-title, .post-item .post-author, .post-item .author-link, .post-item .author {
@@ -441,7 +510,7 @@ header {
     
 }
 
-/* --- Dog Info Pages --- */
+/* --- информация про собак--- */
 .dog-info-container {
     background: #232526;
     color: #fff;
@@ -529,7 +598,7 @@ header {
     margin-bottom: 24px;
 }
 
-/* Стили для блока "О САМОМ ГЛАВНОМ!" */
+
 .important-block {
     background: linear-gradient(120deg, #263238 60%, #314755 100%);
     border-radius: 16px;
@@ -537,10 +606,10 @@ header {
     margin: 20px 0;
     border: 1.5px solid #26a69a33;
     box-shadow: 0 4px 24px rgba(38, 166, 154, 0.10);
-    text-align: center; /* Центрирование содержимого */
-    max-width: 300px; /* Опционально: ограничение ширины */
-    margin-left: auto; /* Выравнивание справа */
-    margin-right: auto; /* Центрирование блока */
+    text-align: center; 
+    max-width: 300px; 
+    margin-left: auto; 
+    margin-right: auto; 
 }
 
 .important-title {
