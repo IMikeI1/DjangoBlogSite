@@ -460,7 +460,7 @@ header {
     text-shadow: 0 1px 6px #23252655;
 }
 
-/* Для ссылок на автора */
+
 .post-item a, .post-list a {
     color: #ffe082;
     text-decoration: none;
@@ -558,7 +558,7 @@ header {
     box-shadow: 0 2px 8px #23252655;
 }
 
-/* --- Leash Info Box --- */
+/* --- информация о поводке --- */
 .leash-box {
     background: #232526;
     border-radius: 16px;

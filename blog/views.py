@@ -203,27 +203,7 @@ def favorites_list(request):
     context = {'favorites': favorites, 'title': 'Мои избранные посты'}
     return render(request, 'blog/favorites_list.html', context)
 
-@require_POST
-@login_required
-def add_to_favorites_ajax(request):
-    slug = request.POST.get('slug')
-    if not slug:
-        return JsonResponse({'success': False, 'error': 'No slug provided.'}, status=400)
-    post = get_object_or_404(Post, slug=slug)
-    if post.author == request.user:
-        return JsonResponse({'success': False, 'error': 'Нельзя добавить свой пост.'}, status=403)
-    fav, created = Favorite.objects.get_or_create(user=request.user, post=post)
-    return JsonResponse({'success': True, 'added': created})
 
-@require_POST
-@login_required
-def remove_from_favorites_ajax(request):
-    slug = request.POST.get('slug')
-    if not slug:
-        return JsonResponse({'success': False, 'error': 'No slug provided.'}, status=400)
-    post = get_object_or_404(Post, slug=slug)
-    deleted, _ = Favorite.objects.filter(user=request.user, post=post).delete()
-    return JsonResponse({'success': True, 'removed': deleted > 0})
 
 def health_dog(request):
     """Страница о здоровье собак."""
