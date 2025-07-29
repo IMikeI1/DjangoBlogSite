@@ -35,13 +35,10 @@ class Favorite(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='favorited_by', verbose_name='Пост')
     added_at = models.DateTimeField(auto_now_add=True, verbose_name='Добавлено')
     
-    
     class Meta:
         unique_together = ('user', 'post')
         verbose_name = 'Избранный пост'
         verbose_name_plural = 'Избранные посты'
-    
-    
     
     def __str__(self):
         return f"{self.user.username} {self.post.title}" 

@@ -7,17 +7,9 @@ from .forms import PostForm, FilterForm
 from .models import Post, Favorite
 from django.http import HttpResponseNotFound
 from django.contrib import messages
-from django.views.decorators.http import require_POST
-from django.http import JsonResponse
 
-def trigger_404(request):
-    return HttpResponseNotFound(render(request, 'blog/404.html'))
 
-def trigger_403(request):
-    return HttpResponseNotFound(render(request, 'blog/403.html'))
 
-def trigger_500(request):
-    return HttpResponseNotFound(render(request, 'blog/500.html'))
 
 
 def index(request):
